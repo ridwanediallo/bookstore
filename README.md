@@ -25,7 +25,7 @@ To get a local copy up and running follow these simple exampl
 #### Set up your own copy locally
 
 - Clone [the GitHub Repository](https://github.com/ridwanediallo/bookstore.git)
-- Go to the Project `cd "Bookstore CMS"`
+- Go to the Project `cd "bookstore"`
 - Run `npm install` to install the _dependencies_
 - Run `npm start` to run the live server.
 
