@@ -29,7 +29,7 @@ To get a local copy up and running follow these simple exampl
 - Run `npm install` to install the _dependencies_
 - Run `npm start` to run the live server.
 
-## About me
+## Author
 
 👤 **Ridwan**
 
