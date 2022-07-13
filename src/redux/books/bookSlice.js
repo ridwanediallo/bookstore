@@ -35,6 +35,20 @@ export const addBooks = createAsyncThunk(
   },
 );
 
+export const deleteBook = createAsyncThunk(
+  'books/deleteBook',
+  async (payload) => {
+    const api_Id = '1ixeASo4AU3X3cZnoiCd';
+    await fetch(
+      `https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/${api_Id}/books/${payload}`,
+      {
+        method: 'DELETE',
+      },
+    );
+    return payload;
+  },
+);
+
 export const bookSlice = createSlice({
   name: 'books',
   initialState: [],
