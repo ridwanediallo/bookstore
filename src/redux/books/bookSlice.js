@@ -1,9 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
+/* eslint camelcase: ["error", {properties: "never"}] */
 export const getBooksData = createAsyncThunk('books/getBooksData', async () => {
-  const api_Id = '1ixeASo4AU3X3cZnoiCd';
+  const id = '1ixeASo4AU3X3cZnoiCd';
   const response = await fetch(
-    `https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/${api_Id}/books`
+    `https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/${id}/books`,
   );
 
   if (response.ok) {
@@ -15,7 +16,7 @@ export const getBooksData = createAsyncThunk('books/getBooksData', async () => {
 export const addBooks = createAsyncThunk(
   'books / addBooks',
   async (payload) => {
-    const api_Id = '1ixeASo4AU3X3cZnoiCd';
+    const id = '1ixeASo4AU3X3cZnoiCd';
     const book = {};
     book.item_id = payload.id;
     book.title = payload.title;
@@ -23,7 +24,7 @@ export const addBooks = createAsyncThunk(
     book.category = payload.category;
 
     await fetch(
-      `https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/${api_Id}/books`,
+      `https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/${id}/books`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -38,9 +39,9 @@ export const addBooks = createAsyncThunk(
 export const deleteBook = createAsyncThunk(
   'books/deleteBook',
   async (payload) => {
-    const api_Id = '1ixeASo4AU3X3cZnoiCd';
+    const id = '1ixeASo4AU3X3cZnoiCd';
     await fetch(
-      `https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/${api_Id}/books/${payload}`,
+      `https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/${id}/books/${payload}`,
       {
         method: 'DELETE',
       },
@@ -53,7 +54,7 @@ export const bookSlice = createSlice({
   name: 'books',
   initialState: {},
   extraReducers: {
-    [getBooksData.pending]: (state, action) => {
+    [getBooksData.pending]: () => {
       console.log('fetching');
     },
     [getBooksData.fulfilled]: (state, action) => {
@@ -61,6 +62,7 @@ export const bookSlice = createSlice({
       return action.payload.book;
     },
     [addBooks.fulfilled]: (state, action) => {
+      /* eslint no-param-reassign: ["error", { "props": false }] */
       state[action.payload.item_id] = [
         {
           title: action.payload.title,
