@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 /* eslint camelcase: ["error", {properties: "never"}] */
+// eslint-disable-next-line consistent-return
 export const getBooksData = createAsyncThunk('books/getBooksData', async () => {
   const id = '1ixeASo4AU3X3cZnoiCd';
   const response = await fetch(
