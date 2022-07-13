@@ -1,21 +1,26 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
+import './AddBook.css';
 
-import { bookAdded } from '../redux/books/bookSlice';
+import { addBooks } from '../redux/books/bookSlice';
 
 const AddBook = () => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
+  const [category, setCategory] = useState('');
 
   const dispatch = useDispatch();
 
   const onTitleChange = (e) => setTitle(e.target.value);
   const onAuthorChange = (e) => setAuthor(e.target.value);
+  const onCategoryChange = (e) => setCategory(e.target.value);
 
   const onSaveBookClick = () => {
-    if (title && author) {
-      dispatch(bookAdded({ id: nanoid(), title, author }));
+    if (title && author && category) {
+      /* eslint object-curly-newline: ["error", "never"] */
+      /* eslint-env es6 */
+      dispatch(addBooks({ id: nanoid(), title, author, category }));
     }
     setTitle('');
     setAuthor('');
@@ -26,22 +31,34 @@ const AddBook = () => {
   };
 
   return (
-    <section>
-      <h1>ADD NEW BOOK</h1>
-      <form onSubmit={addBookHandler}>
+    <section className="container form-section">
+      <h1 className="form-title">ADD NEW BOOK</h1>
+      <form onSubmit={addBookHandler} className="">
         <input
+          className="input"
           type="text"
           placeholder="Enter your Title"
           value={title}
           onChange={onTitleChange}
         />
         <input
+          className="input"
           type="text"
           placeholder="Enter your Author"
           value={author}
           onChange={onAuthorChange}
         />
-        <button type="submit" onClick={onSaveBookClick}>
+        <select
+          onChange={onCategoryChange}
+          value={category}
+          className="input input-select"
+        >
+          <option value="action">Action</option>
+          <option value="it">IT</option>
+          <option value="fiction">Fiction</option>
+          <option value="leadership">Leadership</option>
+        </select>
+        <button type="submit" onClick={onSaveBookClick} className="submit-btn">
           Submit Book
         </button>
       </form>

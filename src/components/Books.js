@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './Books.css';
 
 import AddBook from './AddBook';
 import BookList from './BookList';
@@ -13,10 +14,11 @@ const Books = () => {
     ]);
   };
   return (
-    <div>
-      <AddBook addBook={addBookHandler} />
+    <>
       <BookList books={booksList} />
-    </div>
+      <hr className="container" />
+      <AddBook addBook={addBookHandler} />
+    </>
   );
 };
 

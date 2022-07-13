@@ -20,7 +20,8 @@
     "react/react-in-jsx-scope": "off",
     "import/no-unresolved": "off",
     "no-shadow": "off",
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "camelcase": ["error", { "allow": ["aa_bb"] }]
   },
   "ignorePatterns": ["dist/", "build/"]
 }
