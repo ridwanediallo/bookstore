@@ -51,14 +51,27 @@ export const deleteBook = createAsyncThunk(
 
 export const bookSlice = createSlice({
   name: 'books',
-  initialState: [],
-  reducers: {
-    bookAdded: (state, action) => {
-      state.push(action.payload);
+  initialState: {},
+  extraReducers: {
+    [getBooksData.pending]: (state, action) => {
+      console.log('fetching');
     },
-    /* eslint-disable arrow-body-style */
-    removeBook: (state, action) => {
-      return state.filter((book) => book.id !== action.payload);
+    [getBooksData.fulfilled]: (state, action) => {
+      console.log('success');
+      return action.payload.book;
+    },
+    [addBooks.fulfilled]: (state, action) => {
+      state[action.payload.item_id] = [
+        {
+          title: action.payload.title,
+          author: action.payload.author,
+          category: action.payload.category,
+        },
+      ];
+    },
+    [deleteBook.fulfilled]: (state, action) => {
+      console.log('success');
+      delete state[action.payload];
     },
   },
 });
