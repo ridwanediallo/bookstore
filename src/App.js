@@ -7,10 +7,12 @@ function App() {
   return (
     <>
       <NavBar />
-      <Routes>
-        <Route exact path="/" element={<Books />} />
-        <Route path="/categories" element={<Categories />} />
-      </Routes>
+      <main className="shadow p-3 mb-5 bg-body rounded py-5">
+        <Routes>
+          <Route exact path="/" element={<Books />} />
+          <Route path="/categories" element={<Categories />} />
+        </Routes>
+      </main>
     </>
   );
 }

@@ -6,20 +6,20 @@ import './NavBar.css';
 
 const NavBar = () => (
   <Navbar collapseOnSelect className="navig" expand="lg" bg="" variant="dark">
-    <div className="container navB">
+    <div className="container navB py-3 px-5">
       <Navbar.Brand href="#home" className=" text-primary logo">
         BookStore CMS
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="me-auto">
+        <Nav className="me-auto align-self-center">
           <Nav.Link href="#book">
-            <Link to="/" className="text-black link">
+            <Link to="/" className="text-secondary link">
               Books
             </Link>
           </Nav.Link>
           <Nav.Link href="#categories">
-            <Link to="/" className="text-secondary link">
+            <Link to="/categories" className="text-secondary link">
               Categories
             </Link>
           </Nav.Link>
